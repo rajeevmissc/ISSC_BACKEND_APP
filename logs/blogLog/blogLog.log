@@ -1,0 +1,33 @@
+level info: Aug-19-2023 14:24:11 	You liked the blog!
+level error: Aug-19-2023 17:55:01 	Error: userSchema.log is not a function
+level info: Aug-19-2023 17:55:57 	Blog Created Successfully .
+level error: Aug-23-2023 16:19:15 	Error: Invalid login: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials n9-20020a170902e54900b001bde65894d5sm10637439plf.109 - gsmtp
+level info: Aug-23-2023 16:22:58 	Blog Created Successfully .
+level info: Aug-23-2023 16:48:01 	Trending Blogs Found!
+level info: Aug-23-2023 16:48:36 	Trending Blogs Found!
+level error: Aug-23-2023 16:49:56 	Error: userLogger is not defined
+level info: Aug-23-2023 16:50:42 	Trending Blogs Found!
+level error: Aug-24-2023 16:06:46 	Error: Cannot read properties of undefined (reading 'id')
+level error: Aug-24-2023 16:11:01 	Error: Cannot read properties of undefined (reading 'id')
+level info: Aug-24-2023 16:13:20 	You liked the blog!
+level info: Aug-24-2023 16:23:59 	You liked the blog!
+level info: Sep-09-2023 23:23:35 	User blog found
+level error: Mar-05-2025 19:40:40 	Error: Missing credentials for "PLAIN"
+level error: Mar-05-2025 19:41:52 	Error: Missing credentials for "PLAIN"
+level info: Mar-05-2025 19:43:23 	Blog Created Successfully .
+level info: Mar-05-2025 19:51:11 	Your blog updated Successfully .
+level info: Mar-05-2025 19:52:11 	Your blog updated Successfully .
+level info: Mar-05-2025 19:52:14 	Your blog updated Successfully .
+level info: Mar-05-2025 19:57:28 	Blogs Founded.
+level info: Mar-05-2025 19:57:48 	Blogs Founded.
+level info: Mar-05-2025 19:58:13 	Blogs Founded.
+level info: Mar-05-2025 19:59:53 	All blogs
+level info: Mar-05-2025 20:00:18 	Blogs Founded.
+level info: Mar-05-2025 20:01:32 	All blogs
+level info: Mar-05-2025 20:04:04 	Blog Detail.
+level info: Mar-05-2025 20:05:19 	Trending Blogs Found!
+level error: Mar-05-2025 20:07:19 	Error: Cannot read properties of null (reading 'userEmail')
+level info: Mar-05-2025 20:10:30 	User blog found
+level error: Mar-05-2025 20:12:43 	Error: Cannot read properties of null (reading 'userEmail')
+level info: Mar-05-2025 20:15:10 	You liked the blog!
