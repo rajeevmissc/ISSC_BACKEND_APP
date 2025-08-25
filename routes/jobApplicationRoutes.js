@@ -1,5 +1,5 @@
 const express = require("express");
-const { uploadResume, submitJobApplication } = require("../controller/jobApplicationController");
+const { uploadResume, submitJobApplication, getJobApplications } = require("../controller/jobApplicationController");
 const multer = require("multer");
 
 const router = express.Router();
@@ -18,5 +18,8 @@ const upload = multer({ storage: storage });
 
 // Job application submission with file upload
 router.post("/submit", upload.single("resume"), submitJobApplication);
+
+// Fetch all applications
+router.get("/get-jobapplication", getJobApplications);
 
 module.exports = router;
