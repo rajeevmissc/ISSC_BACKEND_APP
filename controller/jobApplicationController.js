@@ -27,4 +27,14 @@ const submitJobApplication = async (req, res) => {
   }
 };
 
-module.exports = { submitJobApplication };
+const getJobApplications = async (req, res) => {
+  try {
+    const applications = await JobApplication.find().sort({ createdAt: -1 });
+    res.status(200).json(applications);
+  } catch (error) {
+    console.error("Fetch applications error:", error);
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+module.exports = { submitJobApplication, getJobApplications};
