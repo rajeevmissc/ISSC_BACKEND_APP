@@ -1,22 +1,14 @@
 const express = require("express");
-const { uploadResume, submitJobApplication, getJobApplications } = require("../controller/jobApplicationController");
 const multer = require("multer");
+const { submitJobApplication, getJobApplications } = require("../controller/jobApplicationController");
 
 const router = express.Router();
 
-// Multer setup for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Store resumes in 'uploads' folder
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+// Multer: use memory storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-const upload = multer({ storage: storage });
-
-// Job application submission with file upload
+// Submit job application with resume upload
 router.post("/submit", upload.single("resume"), submitJobApplication);
 
 // Fetch all applications
