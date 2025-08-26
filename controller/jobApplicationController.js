@@ -1,11 +1,32 @@
-const JobApplication = require("../models/jobApplicationModel"); // Your Mongoose Model
+const JobApplication = require("../models/jobApplicationModel");
+const { BlobServiceClient } = require("@azure/storage-blob");
+const path = require("path");
+
+const blobUrl = process.env.AZURE_BLOB_URL;
+const sasToken = process.env.AZURE_BLOB_SAS_TOKEN;
+
+// Create BlobServiceClient using SAS URL
+const blobServiceClient = new BlobServiceClient(`${blobUrl}${sasToken}`);
+const containerClient = blobServiceClient.getContainerClient("");
 
 const submitJobApplication = async (req, res) => {
   try {
-    const { firstName, lastName, email, phone, currentCTC, expectedCTC, noticePeriod, portfolioLink } = req.body;
-    const resumePath = req.file ? `/uploads/${req.file.filename}` : null;
+    const { firstName, lastName, email, phone, currentCTC, expectedCTC, noticePeriod, applyForPosition, jobId, tellmeAboutYou, portfolioLink } = req.body;
 
-    // Store application data in MongoDB
+    let resumeUrl = null;
+
+    if (req.file) {
+      const blobName = `${Date.now()}-${path.basename(req.file.originalname)}`;
+      const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+
+      // Upload file buffer directly
+      await blockBlobClient.uploadData(req.file.buffer, {
+        blobHTTPHeaders: { blobContentType: req.file.mimetype },
+      });
+
+      resumeUrl = blockBlobClient.url; // Azure URL
+    }
+
     const newApplication = new JobApplication({
       firstName,
       lastName,
@@ -14,16 +35,18 @@ const submitJobApplication = async (req, res) => {
       currentCTC,
       expectedCTC,
       noticePeriod,
+      applyForPosition,
+      jobId,
+      tellmeAboutYou,
       portfolioLink,
-      resume: resumePath, // Store file path
+      resume: resumeUrl,
     });
 
     await newApplication.save();
-    res.status(201).json({ message: "Application submitted successfully!", resumePath });
-
+    res.status(201).json({ message: "Application submitted successfully!", resumeUrl });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error", error });
+    console.error("Submit application error:", error);
+    res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
 
@@ -37,4 +60,4 @@ const getJobApplications = async (req, res) => {
   }
 };
 
-module.exports = { submitJobApplication, getJobApplications};
+module.exports = { submitJobApplication, getJobApplications };
