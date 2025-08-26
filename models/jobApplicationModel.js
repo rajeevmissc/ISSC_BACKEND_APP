@@ -8,9 +8,11 @@ const JobApplicationSchema = new mongoose.Schema({
   currentCTC: { type: String },
   expectedCTC: { type: String },
   noticePeriod: { type: String },
+  applyForPosition: { type: String },
+  jobId: { type: String },
+  tellmeAboutYou: { type: String },
   portfolioLink: { type: String },
   resume: { type: String, required: false}, // Store file path here
 }, { timestamps: true });
 
 module.exports = mongoose.model("JobApplication", JobApplicationSchema);
-
